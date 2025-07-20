@@ -1,4 +1,4 @@
-import React from 'react'
+import { motion } from 'framer-motion';
 import DOCKER from '../assets/docker-logo.png';
 import Postman from '../assets/postman-logo.png';
 import Javascript from '../assets/javascript.png';
@@ -12,72 +12,67 @@ import Node from '../assets/node.png';
 import Azure from '../assets/Azure Devops.png';
 import SpringBoot from '../assets/spring-boot-logo.png';
 
+const tech = [
+  { name: 'Docker', image: DOCKER },
+  { name: 'Postman', image: Postman },
+  { name: 'JavaScript', image: Javascript },
+  { name: 'React', image: ReactJs },
+  { name: 'Java', image: JavaImg },
+  { name: 'GitHub', image: Github },
+  { name: 'Squish', image: Squish },
+  { name: 'Azure SQL', image: SQL },
+  { name: 'Tailwind', image: Tailwind },
+  { name: 'Node.js', image: Node },
+  { name: 'Azure DevOps', image: Azure },
+  { name: 'Spring Boot', image: SpringBoot },
+];
 
 const Skills = () => {
   return (
-    <div name='skills' className='w-full h-screen bg-gray-800 text-gray-300' >
-    {/* Container */ }
-    <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-      <div>
-       <p className=' text-4xl font-bold inline border-b-4 border-pink-600 font-sans'>Experience</p>
-       <p className='py-4'>These are the Technologies I have worked with</p>
-      </div>
-      <div className=' w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-8'>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={DOCKER} alt="Docker"/>
-          <p>DOCKER</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Postman} alt="Postman icon"/>
-          <p>POSTMAN</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Javascript} alt="Javascript icon"/>
-          <p>JAVASCRIPT</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={ReactJs} alt="React"/>
-          <a href='/'><p>REACT</p></a>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={JavaImg} alt="Java"/>
-          <p>JAVA</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Github} alt="Github"/>
-          <p>GITHUB</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Squish} alt="Squish"/>
-          <p>SQUISH</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={SQL} alt="SQL"/>
-          <p>SQL</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Tailwind} alt="Tailwind"/>
-          <p>TAILWIND</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Node} alt="Node Js"/>
-          <p>NODEJS</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={Azure} alt="Azure icon"/>
-          <p>AZURE</p>
-        </div>
-        <div  className='shadow-md shadow-gray-800 hover:scale-110 duration-500'>
-          <img className=' w-20 mx-auto' src={SpringBoot} alt="Spring Boot"/>
-          <p>SPRING BOOT</p>
-        </div>
-        
-        
-        
-      </div>
-    </div>
-    </div>
-  )
-}
+    <div
+      name='skills'
+      className='w-full min-h-screen bg-gray-900 text-gray-300 scroll-mt-24 pt-24 pb-32 px-4'
+    >
+      <div className='max-w-[1200px] mx-auto'>
+        {/* Heading */}
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
+          className='mb-12'
+        >
+          <h2 className='text-4xl font-bold inline border-b-4 border-cyan-500 font-sans'>
+            Experience
+          </h2>
+          <p className='text-gray-400 mt-2'>
+            Technologies I’ve worked with
+          </p>
+        </motion.header>
 
-export default Skills
+        {/* Skills Grid */}
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6'>
+          {tech.map(({ name, image }, index) => (
+            <motion.div
+              key={name}
+              className='bg-gray-800 rounded-xl shadow-lg hover:scale-105 hover:bg-gray-700 hover:shadow-cyan-500/30 transition duration-300 ease-in-out p-6 flex flex-col items-center'
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <img
+                src={image}
+                alt={`${name} logo`}
+                className='w-16 h-16 object-contain mb-4'
+              />
+              <p className='text-lg font-medium text-center'>{name}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Skills;
